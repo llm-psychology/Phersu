@@ -1,0 +1,12 @@
+.venv*/
+__pycache__/
+.pytest_cache/
+.env
+data/
+.wheel-smoke/
+
+*.egg
+*.egg-info/
+.eggs/
+build/
+dist/

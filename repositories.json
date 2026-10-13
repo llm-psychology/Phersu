@@ -1,0 +1,20 @@
+{
+  "PersonaDough": {
+    "path": "../PersonaDough",
+    "url": "https://github.com/llm-psychology/PersonaDough",
+    "package": "personadough",
+    "ref": "refactor/repository-split"
+  },
+  "PsychAnchor": {
+    "path": "../PsychAnchor",
+    "url": "https://github.com/llm-psychology/PsychAnchor",
+    "package": "psychanchor",
+    "ref": "refactor/extract-anchoring"
+  },
+  "persona-api": {
+    "path": "../persona-api",
+    "url": "https://github.com/llm-psychology/persona-api",
+    "package": "persona_api",
+    "ref": "main"
+  }
+}
