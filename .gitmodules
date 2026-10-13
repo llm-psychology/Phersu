@@ -1,11 +1,11 @@
 [submodule "PersonaDough"]
 	path = PersonaDough
 	url = https://github.com/llm-psychology/PersonaDough.git
-	branch = refactor/repository-split
+	branch = main
 [submodule "PsychAnchor"]
 	path = PsychAnchor
 	url = https://github.com/llm-psychology/PsychAnchor.git
-	branch = refactor/extract-anchoring
+	branch = main
 [submodule "Phersu-api"]
 	path = Phersu-api
 	url = https://github.com/llm-psychology/Phersu-api.git

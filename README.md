@@ -5,8 +5,8 @@ Phersu 是整組專案的統一工作區與導覽入口。PersonaDough、PsychAn
 
 | Repo | 職責 | 終點/輸出 |
 |---|---|---|
-| [PersonaDough](https://github.com/llm-psychology/PersonaDough/tree/refactor/repository-split) | 捏出人格 | 人格 JSON，包含初始背景故事與語言風格 |
-| [PsychAnchor](https://github.com/llm-psychology/PsychAnchor/tree/refactor/extract-anchoring) | 訪談、記憶、回答與行為一致性 | 訪談索引、回答、情境決策|
+| [PersonaDough](https://github.com/llm-psychology/PersonaDough/tree/main) | 捏出人格 | 人格 JSON，包含初始背景故事與語言風格 |
+| [PsychAnchor](https://github.com/llm-psychology/PsychAnchor/tree/main) | 訪談、記憶、回答與行為一致性 | 訪談索引、回答、情境決策|
 | [Phersu-api](https://github.com/llm-psychology/Phersu-api) | HTTP、SSE、背景任務、模擬環境與展示 adapter | API 與事件串流 |
 | [Phersu](https://github.com/llm-psychology/Phersu) | submodule 工作區、導覽、共用資料格式與整合測試 | 開發入口 |
 
@@ -49,8 +49,6 @@ Phersu/
 └── requirements-dev.txt
 ```
 
-兩個既有 repo 的拆分以分支與 PR 提供，尚未合併 main。submodule 目前對應 PersonaDough 的 `refactor/repository-split`、PsychAnchor 的 `refactor/extract-anchoring` 與 Phersu-api 的 `main`。Phersu 記錄各子 repo 的確切 commit，clone 時會取得同一組版本。
-
 Phersu-api 的 Python 套件名稱仍為 `persona-api`/`persona_api`。進入 Phersu 根目錄，建立 Python 3.10+ 虛擬環境後：
 
 ```powershell
@@ -86,3 +84,13 @@ PsychAnchor 只重用 PersonaDough 的資料格式驗證、路徑與 `runtime/` 
 - [拆分前的 PersonaDough 原型與完整歷史](https://github.com/llm-psychology/PersonaDough-archive)：獨立封存，不參與本專案執行。
 
 本專案採用 GPL-3.0 授權，詳見 [LICENSE](LICENSE)。
+
+## 啟動 OpenAI 火場展示
+
+在 Phersu 根目錄的 `.env` 設定 `LLM_PROVIDER=openai`、`OPENAI_API_KEY` 與共用資料路徑後：
+
+```powershell
+python -m uvicorn persona_api.app:app --env-file .env --host 127.0.0.1 --port 20000
+```
+
+開啟 http://127.0.0.1:20000/fire_simulation_sse ，選擇「自訂選擇」即可指定已生成的人格。
