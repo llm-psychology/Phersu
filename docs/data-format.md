@@ -7,10 +7,10 @@
 | 欄位 | 語意 |
 |---|---|
 | 基本資料.id | 十位小寫十六進位 ID，沿用既有格式 |
-| 基本資料.姓名／年紀 | 角色基本資料；年紀為 0–120 整數 |
-| 人格屬性.人格特質／社交能力／能力屬性 | 字串陣列；描述傾向，不等於心理量表分數 |
+| 基本資料.姓名/年紀 | 角色基本資料；年紀為 0–120 整數 |
+| 人格屬性.人格特質/社交能力/能力屬性 | 字串陣列；描述傾向，不等於心理量表分數 |
 | 生平故事 | PersonaDough 產生的初始背景 |
-| 語言行為／簡化行為 | 語言風格與人格摘要 |
+| 語言行為/簡化行為 | 語言風格與人格摘要 |
 | AI參數（可選） | 模型生成的參數建議，未驗證有效性 |
 
 PersonaDough 是此資料的生產者。PsychAnchor 以角色 ID 關聯自己的問答、記憶與對話，不因一次行為更新原人格。
@@ -43,6 +43,6 @@ PsychAnchor 的 `rag/{persona_id}/qa_pairs.json` 儲存 `[{"q": "問題", "a": "
 
 ## 儲存配置
 
-三個 repo 使用相同的 `PERSONA_DATA_DIR` 絕對路徑；PsychAnchor 自己控制 `PSYCHANCHOR_DATA_DIR` 與 `CONVERSATION_DATA_DIR`；API 使用 `API_DATA_DIR` 存放環境／Unity 相關執行資料。
+三個 repo 使用相同的 `PERSONA_DATA_DIR` 絕對路徑；PsychAnchor 自己控制 `PSYCHANCHOR_DATA_DIR` 與 `CONVERSATION_DATA_DIR`；API 使用 `API_DATA_DIR` 存放環境/Unity 相關執行資料。
 
 主 repo 僅提供整合入口，不成為角色資料的第二份真實來源。

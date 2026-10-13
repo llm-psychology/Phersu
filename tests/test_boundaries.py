@@ -1,13 +1,30 @@
 import ast
+import configparser
+import json
 from pathlib import Path
 
-ROOT=Path(__file__).resolve().parents[2]
+ROOT=Path(__file__).resolve().parents[1]
+
+def test_submodules_match_workspace_manifest():
+    config = configparser.ConfigParser()
+    config.read(ROOT / ".gitmodules", encoding="utf-8")
+    manifest = json.loads((ROOT / "repositories.json").read_text(encoding="utf-8"))
+    assert set(manifest) == {"PersonaDough", "PsychAnchor", "Phersu-api"}
+    assert set(config.sections()) == {f'submodule "{name}"' for name in manifest}
+    for name, entry in manifest.items():
+        section = config[f'submodule "{name}"']
+        assert section["path"] == name
+        assert section["url"] == entry["url"] + ".git"
+        assert section["branch"] == entry["ref"]
+        assert (ROOT / entry["path"] / "pyproject.toml").is_file()
 
 def test_dependency_direction():
     forbidden={"PersonaDough":{"psychanchor","persona_api","fastapi"},
                "PsychAnchor":{"persona_api","fastapi"}}
     for repo,names in forbidden.items():
-        for path in (ROOT/repo/"src").rglob("*.py"):
+        files = list((ROOT/repo/"src").rglob("*.py"))
+        assert files, f"Missing submodule source: {repo}"
+        for path in files:
             tree=ast.parse(path.read_text(encoding="utf-8-sig"))
             for node in ast.walk(tree):
                 imports=[]
@@ -21,8 +38,10 @@ def test_dependency_direction():
 
 
 def test_no_legacy_namespace_imports():
-    for repo in ("PersonaDough","PsychAnchor","persona-api"):
-        for path in (ROOT/repo/"src").rglob("*.py"):
+    for repo in ("PersonaDough","PsychAnchor","Phersu-api"):
+        files = list((ROOT/repo/"src").rglob("*.py"))
+        assert files, f"Missing submodule source: {repo}"
+        for path in files:
             for node in ast.walk(ast.parse(path.read_text(encoding="utf-8-sig"))):
                 if isinstance(node,ast.ImportFrom) and node.module and node.level == 0:
                     assert node.module.split('.')[0] not in {"module","interviewer","humanoid"}, str(path)

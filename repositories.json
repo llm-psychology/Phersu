@@ -1,18 +1,18 @@
 {
   "PersonaDough": {
-    "path": "../PersonaDough",
+    "path": "./PersonaDough",
     "url": "https://github.com/llm-psychology/PersonaDough",
     "package": "personadough",
     "ref": "refactor/repository-split"
   },
   "PsychAnchor": {
-    "path": "../PsychAnchor",
+    "path": "./PsychAnchor",
     "url": "https://github.com/llm-psychology/PsychAnchor",
     "package": "psychanchor",
     "ref": "refactor/extract-anchoring"
   },
   "Phersu-api": {
-    "path": "../persona-api",
+    "path": "./Phersu-api",
     "url": "https://github.com/llm-psychology/Phersu-api",
     "package": "persona_api",
     "ref": "main"
