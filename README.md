@@ -1,19 +1,19 @@
-# Persona Platform
+# Phersu
 
-這是畢業專題的導覽與整合入口。原型尚未完成，目前先依領域拆成三個 Python repo，再由這裡說明如何合作。
+Phersu 是畢業專題的導覽與整合入口。原型尚未完成，目前先依領域拆成三個 Python repo，再由這裡說明如何合作。
 
 | Repo | 職責 | 終點／輸出 |
 |---|---|---|
 | [PersonaDough](https://github.com/llm-psychology/PersonaDough/tree/refactor/repository-split) | 捏出人格 | 人格 JSON，包含初始背景故事與語言風格 |
 | [PsychAnchor](https://github.com/llm-psychology/PsychAnchor/tree/refactor/extract-anchoring) | 訪談、記憶、回答與行為一致性 | 訪談索引、回答、情境決策|
-| [persona-api](https://github.com/llm-psychology/persona-api) | HTTP、SSE、背景任務、模擬環境與展示 adapter | API 與事件串流 |
-| 本 repo | 導覽、共用資料格式與整合測試 | 開發入口 |
+| [Phersu-api](https://github.com/llm-psychology/Phersu-api) | HTTP、SSE、背景任務、模擬環境與展示 adapter | API 與事件串流 |
+| [Phersu](https://github.com/llm-psychology/Phersu) | 導覽、共用資料格式與整合測試 | 開發入口 |
 
 ```mermaid
 flowchart LR
     PD[PersonaDough：捏人格] --> JSON[人格 JSON]
     JSON --> PA[PsychAnchor：訪談／記憶／回答／決策]
-    API[persona-api：HTTP／SSE／模擬環境] --> PD
+    API[Phersu-api：HTTP／SSE／模擬環境] --> PD
     API --> PA
     PA --> MEM[訪談、對話與後續經歷]
 ```
@@ -27,8 +27,8 @@ flowchart LR
 ```powershell
 git clone --branch refactor/repository-split https://github.com/llm-psychology/PersonaDough.git
 git clone --branch refactor/extract-anchoring https://github.com/llm-psychology/PsychAnchor.git
-git clone https://github.com/llm-psychology/persona-api.git
-git clone https://github.com/llm-psychology/persona-platform.git
+git clone https://github.com/llm-psychology/Phersu-api.git persona-api
+git clone https://github.com/llm-psychology/Phersu.git persona-platform
 ```
 
 工作區：
@@ -37,11 +37,13 @@ git clone https://github.com/llm-psychology/persona-platform.git
 專題專案/
 ├── PersonaDough/       # 既有 repo 的拆分分支
 ├── PsychAnchor/        # 既有 repo 的拆入分支
-├── persona-api/        # 新本地 repo
-└── persona-platform/   # 新本地主導覽 repo
+├── persona-api/        # Phersu-api repo
+└── persona-platform/   # Phersu 主導覽 repo
 ```
 
-進入本 repo，建立 Python 3.10+ 虛擬環境後：
+本地資料夾沿用原名，所以上面的 clone 命令指定了目的目錄。Phersu-api 的 Python 套件名稱仍為 `persona-api`／`persona_api`，不隨 GitHub repo 更名。
+
+進入 `persona-platform` 資料夾，建立 Python 3.10+ 虛擬環境後：
 
 ```powershell
 python -m pip install -r requirements-dev.txt
@@ -55,7 +57,7 @@ python tools/offline_demo.py
 
 ## 依賴方向
 
-`persona-api → psychanchor → personadough`，API 也可直接使用 PersonaDough。
+Repo 依賴方向為 `Phersu-api → PsychAnchor → PersonaDough`，API 也可直接使用 PersonaDough。
 
 PsychAnchor 只重用 PersonaDough 的資料格式驗證、路徑與 `runtime/` adapter，沒有呼叫人格生成器。共用底層工具先留在 PersonaDough，避免此次拆分多出第五個 repo；若兩者未來需要獨立發布週期，可再抽出共用套件。
 

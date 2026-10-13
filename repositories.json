@@ -11,9 +11,9 @@
     "package": "psychanchor",
     "ref": "refactor/extract-anchoring"
   },
-  "persona-api": {
+  "Phersu-api": {
     "path": "../persona-api",
-    "url": "https://github.com/llm-psychology/persona-api",
+    "url": "https://github.com/llm-psychology/Phersu-api",
     "package": "persona_api",
     "ref": "main"
   }

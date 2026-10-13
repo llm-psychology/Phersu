@@ -4,10 +4,12 @@
 |---|---|---|
 | PersonaDough | 基本資料、人格特質、初始背景故事與語言風格 | 人格 JSON |
 | PsychAnchor | 訪談、記憶檢索、回答與情境決策 | 訪談索引、對話與決策 |
-| persona-api | HTTP、SSE、背景任務、模擬環境及展示頁面 | API 與事件串流 |
-| persona-platform | 導覽、資料格式與跨 repo 整合驗證 | 開發入口 |
+| Phersu-api | HTTP、SSE、背景任務、模擬環境及展示頁面 | API 與事件串流 |
+| Phersu | 導覽、資料格式與跨 repo 整合驗證 | 開發入口 |
 
-依賴方向為 `persona-api → psychanchor → personadough`，API 也可直接使用 PersonaDough。
+Repo 依賴方向為 `Phersu-api → PsychAnchor → PersonaDough`，API 也可直接使用 PersonaDough。
+
+GitHub repo 已使用新名稱；本地資料夾沿用 `persona-api` 與 `persona-platform`。Python 套件名稱與 import 維持原樣。
 
 PsychAnchor 只重用 PersonaDough 的 JSON 驗證、路徑設定與模型 adapter，不呼叫人格生成器。初始人格保持固定；訪談記憶與後續經歷另存。量化人格錨定、偏離評估／校正與後續故事生成尚未完成。
 
