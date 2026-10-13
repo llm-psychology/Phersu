@@ -79,12 +79,6 @@ Repo 依賴方向為 `Phersu-api → PsychAnchor → PersonaDough`，API 也可�
 
 PsychAnchor 只重用 PersonaDough 的資料格式驗證、路徑與 `runtime/` adapter，沒有呼叫人格生成器。共用底層工具先留在 PersonaDough，避免此次拆分多出第五個 repo；若兩者未來需要獨立發布週期，可再抽出共用套件。
 
-## 實作狀態
-
-已存在：人格生成、合成訪談、RAG、角色對話與情境決策原型。
-
-未完成：量化人格錨定、人格偏離評估/校正、完整事件記憶與後續故事生成、多租戶、正式 CI/CD/容器部署及維運驗證。
-
 ## 文件
 
 - [模組邊界](docs/repository-boundaries.md)
